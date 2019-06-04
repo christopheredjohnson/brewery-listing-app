@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link, RouteComponentProps } from 'react-router-dom'
+import { IBrewery } from '../types'
+import { BreweryType } from '../constants'
 
 
 export default class BreweryDetails extends React.Component<IBreweryDetailsProps, IBreweryDetailsState> {
@@ -8,9 +10,6 @@ export default class BreweryDetails extends React.Component<IBreweryDetailsProps
 		super(props)
 
 		this.state = {
-			brewery: {
-				name: ""
-			}
 		}
 
 	}
@@ -28,25 +27,27 @@ export default class BreweryDetails extends React.Component<IBreweryDetailsProps
 	}
 
 	render(): JSX.Element {
-		return (
-			<div>
-				<Link to="/">
-					<span>Back</span>
-				</Link>
-				<p>{this.state.brewery.name}</p>
-			</div>
-		)
+
+		if(this.state.brewery) {
+			return (
+				<div>
+					<Link to="/">
+						<span>Back</span>
+					</Link>
+					<h1>{this.state.brewery.name}</h1>
+				</div>
+			)
+		} else {
+			return (
+				<div></div> // render empty div.
+			)
+		}
 	}
-}
-
-
-interface IBrewery {
-	name: string
 }
 
 // match.params is a collection of strings and need conversion to number
 interface IBreweryDetailsProps extends RouteComponentProps<{ id: string }> {}
 
 interface IBreweryDetailsState {
-	brewery: IBrewery;
+	brewery?: IBrewery;
 }

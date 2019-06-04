@@ -1,17 +1,21 @@
 import React from 'react'
 import BreweryListItem  from './BreweryListItem'
+import { IBrewery } from '../types'
 
 // potentially add the ability to look up user state and city through `navigator.geolocation.getcurrentposition`
 interface IBreweryListState {
 	user_state: string;
 	user_city: string;
-	breweries: Array<any>;
+	breweries: Array<IBrewery>;
 }
 
 class BreweryList extends React.Component<{}, IBreweryListState> {
 
 	constructor(props: {}, state: IBreweryListState) {
 		super(props, state)
+
+
+		// use geolocation to find user's state and city.
 
 		this.state = {
 			user_city: 'harrisburg',
@@ -37,7 +41,7 @@ class BreweryList extends React.Component<{}, IBreweryListState> {
 
 	render() {
 		return (
-			<div>
+			<div className="columns is-multiline">
 				{this.state.breweries.map(brewery => {
 					return (
 						<BreweryListItem key={brewery.id} brewery={brewery} />
