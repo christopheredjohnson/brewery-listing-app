@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link, RouteComponentProps } from 'react-router-dom'
-import { IBrewery } from '../types'
+import { IBrewery, ICenter } from '../types'
 import { BreweryType } from '../constants'
+import Map from './Map'
 
 
 export default class BreweryDetails extends React.Component<IBreweryDetailsProps, IBreweryDetailsState> {
@@ -26,15 +27,28 @@ export default class BreweryDetails extends React.Component<IBreweryDetailsProps
 		})
 	}
 
-	render(): JSX.Element {
+	render() {
 
 		if(this.state.brewery) {
+
 			return (
-				<div>
+				<div className="section">
 					<Link to="/">
 						<span>Back</span>
 					</Link>
-					<h1>{this.state.brewery.name}</h1>
+					<div className="box">
+						<div className="columns">
+							<div className="column is-6">
+								<h1>{this.state.brewery.name}</h1>
+							</div>
+							<div className="column is-6">
+								{ this.state.brewery.latitude !== null ? <Map center={{lat: parseInt(this.state.brewery.latitude), lng: parseInt(this.state.brewery.longitude)}} zoom={11}/> : '' }
+								{ this.state.brewery.latitude === null ? <span>No Map Available</span> : '' }
+							</div>
+
+
+						</div>
+					</div>
 				</div>
 			)
 		} else {
@@ -51,3 +65,4 @@ interface IBreweryDetailsProps extends RouteComponentProps<{ id: string }> {}
 interface IBreweryDetailsState {
 	brewery?: IBrewery;
 }
+

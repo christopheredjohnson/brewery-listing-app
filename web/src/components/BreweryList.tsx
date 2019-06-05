@@ -30,6 +30,7 @@ class BreweryList extends React.Component<{}, IBreweryListState> {
 				return response.json()
 			})
 			.then(data => {
+				console.table(data)
 				this.setState({
 					breweries: data
 				})

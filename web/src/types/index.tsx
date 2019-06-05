@@ -1,7 +1,14 @@
+import { BreweryType } from '../constants'
+
+export interface ICenter {
+	lat: number;
+	lng: number;
+}
+
 export interface IBrewery {
 	id: number;
 	name: string;
-	brewery_type: string;
+	brewery_type: BreweryType;
 	street: string;
 	city: string;
 	state: string;
@@ -13,4 +20,5 @@ export interface IBrewery {
 	website_url: string;
 	updated_at: Date
 	tag_list: Array<string>
-}
+} 
+
