@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { BreweryType } from '../constants'
-interface IBreweryListItemProps {
-	brewery: any
-}
+import AddressBlock from './AddressBlock';
+import { IBreweryListItemProps } from '../types'
+
 
 class BreweryListItem extends React.Component<IBreweryListItemProps> {
 	render() {
@@ -16,24 +16,17 @@ class BreweryListItem extends React.Component<IBreweryListItemProps> {
 			state,
 			postal_code,
 			country,
-			website_url
+			website_url,
+			brewery_type
 		} = this.props.brewery
 
 		return (
-			<div className="column is-4">
+			<div className="column is-4-desktop is-6-tablet">
 				<div className="card">
-					<header className="card-header">
-						<p className="card-header-title">{ name }</p>
-					</header>
 					<div className="card-content">
-						{ BreweryType[this.props.brewery.brewery_type] }
-						{ street !== '' ? <div>{street}</div> : '' }
-						<div>
-							{ city !== '' ? <span>{city}, </span> : '' }
-							{ state !== '' ? <span>{state}, </span> : '' }
-							{ postal_code !== '' ? <span>{postal_code}, </span> : '' }
-							{ country !== '' ? <span>{country} </span> : '' }
-						</div>
+						<p className="title">{ name }</p>
+						<p className="subtitle">{ BreweryType[brewery_type] }</p>
+						<AddressBlock street={street} city={city} state={state} postal_code={postal_code} country={country} />
 					</div>
 					<footer className="card-footer">
 						<Link className="card-footer-item" to={`/details/${ id }`}>Details</Link>
@@ -46,4 +39,3 @@ class BreweryListItem extends React.Component<IBreweryListItemProps> {
 }
 
 export default BreweryListItem
-

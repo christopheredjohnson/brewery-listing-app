@@ -18,7 +18,7 @@ class BreweryList extends React.Component<{}, IBreweryListState> {
 		// use geolocation to find user's state and city.
 
 		this.state = {
-			user_city: 'harrisburg',
+			user_city: 'york',
 			user_state: 'pennsylvania',
 			breweries: []
 		}

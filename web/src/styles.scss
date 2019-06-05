@@ -1,1 +1,34 @@
-@import '~bulma/bulma'
+@import '~bulma/bulma';
+
+
+body, html {
+    height: 100vh;
+    color: #444545;
+
+    a {
+        color: #444545;
+        &:hover {
+            color: #F49F0A;
+        }
+    }
+}
+
+
+.card {
+    .subtitle {
+        color: #F49F0A;
+    }
+
+    box-shadow: 0 20px 40px 0 rgba(34, 34, 34, 0.1);
+
+}
+
+
+.map {
+    width: 100%;
+    height: 50vh;
+    &__marker {
+        height: 32px;
+        width: 30px;
+    }
+}
